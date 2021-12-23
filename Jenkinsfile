@@ -4,13 +4,13 @@ agent any
     registry = "docker-registry.contegris.com/"
     }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh 'gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/node.zip'
-            }
-        }
+      //  stage('Build') {
+        //    steps {
+          //      echo 'Running build automation'
+            //    sh './gradlew build --no-daemon'
+              //  archiveArtifacts artifacts: 'dist/node.zip'
+            //}
+       // }
       stage('Intializing_Builder'){
            agent { label  'Docker_builder'} 
              stages{
@@ -22,9 +22,6 @@ agent any
             steps {
                 script {
                     app = docker.build("demo/node")
-                    app.inside {
-                        sh 'echo $(curl localhost:8080)'
-                    }
                 }
             }
         }
@@ -35,7 +32,7 @@ agent any
             steps {
                 script {
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') 
-                        app.push("${env.BUILD_NUMBER}")
+                       // app.push("${env.BUILD_NUMBER}")
                         app.push('lastest')
                     }
                 }
