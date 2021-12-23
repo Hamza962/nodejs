@@ -17,7 +17,7 @@ agent none
                stage('Buid_Docker_Image'){
                
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
@@ -30,7 +30,7 @@ agent none
         }
         stage('Push Docker Image') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
