@@ -45,9 +45,7 @@ agent any
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
                         env.WORKSPACE = pwd()
                         def version = readFile "${env.WORKSPACE}/example_env"
-                   
-                        
-                        app.push(${version})
+                        app.push(version)
                      //   app.push('lastest')
                     }
                     }
