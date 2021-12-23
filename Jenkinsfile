@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+agent none
+    environment{
+    registry = "docker-registry.contegris.com/"
+    }
     stages {
         stage('Build') {
             steps {
@@ -18,7 +21,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("hamza/node")
+                    app = docker.build("demo/node")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
@@ -31,11 +34,14 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://docker-registry.contegris.com', 'Docker_Registry') {
+                    docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') 
                         app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                        app.push('lastest')
                     }
                 }
             }
         }
-             }
+         }
+         }
+         }
+         }
