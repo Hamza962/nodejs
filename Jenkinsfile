@@ -43,7 +43,8 @@ agent any
             steps {
                 script {
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
-                        app.push("${env.BUILD_NUMBER}")
+                        def version = readFile "${env.WORKSPACE}/example_env"
+                        app.push($version)
                      //   app.push('lastest')
                     }
                     }
