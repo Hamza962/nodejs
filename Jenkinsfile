@@ -31,9 +31,10 @@ agent any
             }
             steps {
                 script {
-                    docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') 
+                    docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
                        // app.push("${env.BUILD_NUMBER}")
                         app.push('lastest')
+                    }
                     }
                 }
             }
