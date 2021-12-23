@@ -21,7 +21,7 @@ agent any
             }
             steps {
                 script {
-                    app = docker.build("demo/node")
+                    app = docker.build("node_test")
                 }
             }
         }
