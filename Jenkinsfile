@@ -30,8 +30,9 @@ agent any
                  stage('Tag Docker Image'){
                      steps{
                      echo 'tagging Image Build Now....'
+                         script{
                          app.tag('docker-registry.contegris.com/node_final:latest')
-                     
+                         }
                      }   
                  }
                  
