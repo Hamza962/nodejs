@@ -22,9 +22,19 @@ agent any
             steps {
                 script {
                     app = docker.build("node_test")
+            
                 }
             }
         }
+         
+                 stage('Tag Docker Image'){
+                     steps{
+                     echo 'tagging Image Build Now....'
+                         app.tag('docker-registry.contegris.com/node_test:latest')
+                     
+                     }   
+                 }
+                 
         stage('Push Docker Image') {
             when {
                 branch 'main'
