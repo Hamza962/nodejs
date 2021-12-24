@@ -3,6 +3,10 @@ agent any
     environment{
     registry = "docker-registry.contegris.com/"
     }
+    
+    triggers {
+    pollSCM('') // Enabling being build on Push
+  }
     stages {
       //  stage('Build') {
         //    steps {
