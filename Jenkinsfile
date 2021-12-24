@@ -3,10 +3,13 @@ agent any
     environment{
     registry = "docker-registry.contegris.com/"
     }    
+    
+    
  triggers {
         githubPush()
    pollSCM('') // Enabling being build on Push
   }
+    
     stages {
       //  stage('Build') {
         //    steps {
@@ -31,7 +34,7 @@ agent any
             }
         }
          
-                 stage('Tag Docker Image'){
+               stage('Tag Docker Image'){
                      steps{
                      echo 'tagging Image Build Now....'
                          script{
