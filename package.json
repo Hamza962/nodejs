@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "for_test" : "123"
+    "dotenv": "^10.0.0"
   }
 }
 
