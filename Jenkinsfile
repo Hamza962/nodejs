@@ -4,10 +4,10 @@ agent any
     registry = "docker-registry.contegris.com/"
     }
     
-    triggers {
-        githubPush()
-    pollSCM('') // Enabling being build on Push
-  }
+//    triggers {
+  //      githubPush()
+  //  pollSCM('') // Enabling being build on Push
+  //}
     stages {
       //  stage('Build') {
         //    steps {
