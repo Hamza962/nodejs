@@ -2,9 +2,8 @@ pipeline {
 agent any
     environment{
     registry = "docker-registry.contegris.com/"
-    }
-    
-   triggers {
+    }    
+ triggers {
         githubPush()
    pollSCM('') // Enabling being build on Push
   }
