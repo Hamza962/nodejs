@@ -18,7 +18,7 @@ agent any
               //  archiveArtifacts artifacts: 'dist/node.zip'
             //}
        // }
-      stage('Intializing_Builder'){
+      stage('Intializing_Builder..'){
            agent { label  'Docker_builder'} 
              stages{
                stage('Buid_Docker_Image'){
