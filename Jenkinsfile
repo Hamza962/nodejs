@@ -1,7 +1,7 @@
 pipeline {
 agent any
     environment{
-    registry = "docker-registry.contegris.com/"
+    registry = "docker-registry.contegris.com"
     }    
     
     
@@ -39,11 +39,11 @@ agent any
                      echo 'tagging Image Build Now....'
                          script{
                              try {
-                             sh 'docker image inspect  docker-registry.contegris.com/node_test:2.0'
-                                 error("Image => node_test With tag 2.0 Alreadt Exits")
+                                 sh 'docker image inspect  ${registry}/node_test:2.0'
                              }
                                                   
                          catch(err){
+                            echo err 
                          app.tag()
                          }
                          }
