@@ -2,12 +2,8 @@ pipeline {
 agent any
     environment{
     registry = "docker-registry.contegris.com"
-        script{
-        env.WORKSPACE = pwd()
-         def version = readFile "${env.WORKSPACE}/example_env"
-         image_tag = version
                         
-        }
+       
     }    
        
  triggers {
@@ -42,6 +38,11 @@ agent any
                      steps{
                         echo 'checking tag EXISTS'
                          script{
+                             
+                            env.WORKSPACE = pwd()
+                            def version = readFile "${env.WORKSPACE}/example_env"
+                            image_tag = version
+                             
                              def status_check = sh returnStatus: true, script:'docker image inspect  ${registry}/node_test:${image_tag}'
                              if(status_check != 0)
                              {
@@ -64,7 +65,7 @@ agent any
             steps {
                 script {
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
-                        app.push(version)
+                        app.push(${image_tag)
                      //   app.push('lastest')
                     }
                     }
