@@ -1,9 +1,7 @@
 pipeline {
 agent any
     environment{
-    registry = "docker-registry.contegris.com"
-                        
-       
+    registry = "docker-registry.contegris.com"    
     }    
        
  triggers {
