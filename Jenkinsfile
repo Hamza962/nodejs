@@ -61,7 +61,7 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                     'sh echo Testing'
+                     sh 'echo Testing'
                      }
                  }
                  }
