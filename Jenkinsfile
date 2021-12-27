@@ -57,8 +57,17 @@ agent any
                     }
                     }
                 }
-            }
+          
+     }
+                 stage("Deployment_to_DEV"){
+                     
+                     app.run("-p 3344:3344,-d")
+                     
+                 }
         }
+          
+          
+          
          }
          }
          }
