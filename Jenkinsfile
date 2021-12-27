@@ -61,7 +61,7 @@ agent any
             steps {
                 script {
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
-                        app.push(${image_tag})
+                        app.push(${version})
                      //   app.push('lastest')
                     }
                     }
