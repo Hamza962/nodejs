@@ -2,9 +2,13 @@ pipeline {
 agent any
     environment{
     registry = "docker-registry.contegris.com"
+        script{
+        env.WORKSPACE = pwd()
+         def version = readFile "${env.WORKSPACE}/example_env"
+                        
+        }
     }    
-    
-    
+       
  triggers {
         githubPush()
    pollSCM('') // Enabling being build on Push
@@ -33,19 +37,21 @@ agent any
                 }
             }
         }
-         
                stage('Tag Docker Image'){
                      steps{
-                     echo 'tagging Image Build Now....'
+                        echo 'checking tag EXISTS'
                          script{
-                             try {
-                                 sh 'docker image inspect  ${registry}/node_test:3.0'
+                             def status_check = sh returnStatus: true, script:'docker image inspect  ${registry}/node_test:${version}'
+                             if(status_check != 0)
+                             {
+                              error('Tag Already Exists')
+                              currentBuild.result = 'FAILURE'
                              }
-                                                  
-                         catch(Exception e){
-                            echo 'Exception occurred: ' + e.toString()
-                         app.tag()
-                         }
+                             else{
+                              echo'tagging Image Now....' 
+                             app.tag()
+                             
+                             }                         
                          }
                      }   
                  }
@@ -57,8 +63,6 @@ agent any
             steps {
                 script {
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
-                        env.WORKSPACE = pwd()
-                        def version = readFile "${env.WORKSPACE}/example_env"
                         app.push(version)
                      //   app.push('lastest')
                     }
@@ -76,4 +80,3 @@ agent any
          }
          }
          }
-         
