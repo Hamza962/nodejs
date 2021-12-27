@@ -39,7 +39,7 @@ agent any
                      echo 'tagging Image Build Now....'
                          script{
                              try {
-                                 sh 'docker image inspect  ${registry}/node_test:2.0'
+                                 sh 'docker image inspect  ${registry}/node_test:3.0'
                              }
                                                   
                          catch(err){
