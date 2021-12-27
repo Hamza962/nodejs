@@ -1,5 +1,3 @@
-class docker_deploy{
-def version = readFile "${env.WORKSPACE}/example_env"
 pipeline {
 agent any
     environment{
@@ -38,7 +36,7 @@ agent any
                      steps{
                         echo 'checking tag EXISTS'
                          script{
-                             
+                            version = readFile "${env.WORKSPACE}/example_env"
                             env.WORKSPACE = pwd()
                             
                              def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${version}"""
@@ -82,4 +80,3 @@ agent any
          }
          }
          }
-}
