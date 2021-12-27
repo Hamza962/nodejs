@@ -1,3 +1,4 @@
+version = readFile "${env.WORKSPACE}/example_env"
 pipeline {
 agent any
     environment{
@@ -38,7 +39,7 @@ agent any
                          script{
                              
                             env.WORKSPACE = pwd()
-                            version = readFile "${env.WORKSPACE}/example_env"
+                            
                              def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${version}"""
                              if(status_check == 0)
                              {
