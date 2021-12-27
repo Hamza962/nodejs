@@ -38,7 +38,7 @@ agent any
                          script{
                              
                             env.WORKSPACE = pwd()
-                            def version = readFile "${env.WORKSPACE}/example_env"
+                            version = readFile "${env.WORKSPACE}/example_env"
                              def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${version}"""
                              if(status_check == 0)
                              {
@@ -61,7 +61,7 @@ agent any
             steps {
                 script {
                     env.WORKSPACE = pwd()
-                    def version = readFile "${env.WORKSPACE}/example_env"
+                    //def version = readFile "${env.WORKSPACE}/example_env"
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
                         app.push(version)
                      //   app.push('lastest')
