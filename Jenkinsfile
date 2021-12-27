@@ -80,11 +80,11 @@ agent any
                              docker_run()
                              
                          }
-                         catch(Exception err)
+                         catch(Exception err){
                          echo 'Node Container Not Running before' + err.toString()
                          docker_run()
                          
-                         
+                         }
                      }
                  }
                  }
