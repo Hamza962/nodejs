@@ -106,8 +106,8 @@ post {
 
             }
 }
-        }
-
+}
+}
 def docker_run() {
 echo "RUNNING CONTAINER....."
 sh """ docker run -p 8081:8081 --name node -d  ${registry}/node_test:${version}"""
