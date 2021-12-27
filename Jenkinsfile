@@ -72,7 +72,7 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                         sh """ docker run --name node -d ${registry}/node_test:${version}""" 
+                         sh """ docker run --name node  ${registry}/node_test:${version}""" 
                      }
                  }
                  }
