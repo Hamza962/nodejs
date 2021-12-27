@@ -42,8 +42,8 @@ agent any
                                  sh 'docker image inspect  ${registry}/node_test:3.0'
                              }
                                                   
-                         catch(err){
-                            echo err 
+                         catch(Exception e){
+                            echo 'Exception occurred: ' + e.toString()
                          app.tag()
                          }
                          }
