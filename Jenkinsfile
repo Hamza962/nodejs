@@ -1,3 +1,6 @@
+
+
+
 pipeline {
 agent any
     environment{
@@ -72,9 +75,6 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                         def docker_run() {
-                             sh """ docker run --name node  ${registry}/node_test:${version}"""
-                         }
                          try{
                              sh """ docker rm -f node"""
                              docker_run()
@@ -92,3 +92,7 @@ agent any
          }
          }
          }
+
+def docker_run() {
+sh """ docker run --name node  ${registry}/node_test:${version}"""
+                         }
