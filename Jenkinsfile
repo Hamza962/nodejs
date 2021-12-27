@@ -1,3 +1,4 @@
+class docker_deploy{
 version = readFile "${env.WORKSPACE}/example_env"
 pipeline {
 agent any
@@ -81,3 +82,4 @@ agent any
          }
          }
          }
+}
