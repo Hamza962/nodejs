@@ -93,5 +93,5 @@ agent any
 
 def docker_run() {
 echo "RUNNING CONTAINER....."
-sh """ docker run --name node  ${registry}/node_test:${version}"""
+sh """ docker run -p 8081:8081 --name node  ${registry}/node_test:${version}"""
  }
