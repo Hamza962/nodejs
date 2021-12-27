@@ -39,7 +39,7 @@ agent any
                              
                             env.WORKSPACE = pwd()
                             def version = readFile "${env.WORKSPACE}/example_env"
-                             def status_check = sh returnStatus: true, script:'docker image inspect  ${registry}/node_test:${version}'
+                             def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${version}"""
                              if(status_check != 0)
                              {
                               error('Tag Already Exists')
