@@ -61,7 +61,7 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                     app.run("-p 3344:3344,-d")
+                     app.run("-p 3344:3344")
                      }
                  }
                  }
