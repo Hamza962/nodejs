@@ -42,9 +42,10 @@ agent any
                              sh 'docker image inspect  docker-registry.contegris.com/node_test:2.0'
                                  error("Image => node_test With tag 2.0 Alreadt Exits")
                              }
-                                                  }
+                                                  
                          catch(err){
                          app.tag()
+                         }
                          }
                      }   
                  }
