@@ -1,6 +1,3 @@
-
-
-
 pipeline {
 agent any
     environment{
@@ -72,7 +69,7 @@ agent any
                     }
             }
      }
-                 stage("Deployment_to_DEV"){
+                 stage("Deployment To DEV"){
                      steps{
                      script{ 
                          try{
@@ -94,5 +91,6 @@ agent any
          }
 
 def docker_run() {
+echo "RUNNING CONTAINER....."
 sh """ docker run --name node  ${registry}/node_test:${version}"""
-                         }
+ }
