@@ -105,7 +105,7 @@ post {
 						body: "Dear Concerned\n\n${env.JOB_NAME} has been completed Successfully.\nQA Approved by : Hamza_DevOps\n View complete logs: ${env.BUILD_URL}console\n\n BR\nTeam Devops"
 
             }
-
+}
         }
 
 def docker_run() {
