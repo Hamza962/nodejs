@@ -72,7 +72,19 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                         sh """ docker run --name node  ${registry}/node_test:${version}""" 
+                         def docker_run() {
+                             sh """ docker run --name node  ${registry}/node_test:${version}"""
+                         }
+                         try{
+                             sh """ docker rm -f node"""
+                             docker_run()
+                             
+                         }
+                         catch(Exception err)
+                         echo 'Node Container Not Running before' + err.toString()
+                         docker_run()
+                         
+                         
                      }
                  }
                  }
