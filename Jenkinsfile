@@ -90,6 +90,23 @@ agent any
          }
          }
          }
+post {
+            failure {
+						mail to : 'hamza.khalid@grp.contegris.com', from: 'devops@grp.contegris.com',
+						subject: "Devops Failure Notification: ${env.BUILD_TAG}",
+						body: "${env.JOB_NAME} has been failed. \n\nView complete logs:\n ${env.BUILD_URL}console\n\n BR\nTeam Devops"
+
+            }
+            success {
+						mail to: 'hamza.khalid@grp.contegris.com', from: 'devops@grp.contegris.com',
+						//subject: "Success Build: ${env.JOB_NAME}",			 
+						//subject: "Devops Alert: Project:${env.PROJECT_NAME} Job Name:${env.JOB_NAME} Build:${env.BUILD_NUMBER} Status:${env.BUILD_STATUS} ",
+						subject: "Devops Success Notification: ${env.BUILD_TAG}",
+						body: "Dear Concerned\n\n${env.JOB_NAME} has been completed Successfully.\nQA Approved by : Hamza_DevOps\n View complete logs: ${env.BUILD_URL}console\n\n BR\nTeam Devops"
+
+            }
+
+        }
 
 def docker_run() {
 echo "RUNNING CONTAINER....."
