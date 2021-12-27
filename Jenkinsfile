@@ -74,6 +74,7 @@ agent any
                      script{ 
                          try{
                              sh """ docker rm -f node"""
+                             echo "Previuos Container Stopped And Removed"
                              docker_run()
                              
                          }
