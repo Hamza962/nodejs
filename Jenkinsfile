@@ -61,7 +61,7 @@ agent any
                  stage("Deployment_to_DEV"){
                      steps{
                      script{ 
-                     app.run("-p 3344:3344")
+                     'sh docker run -d -p 4433:4433 node-test/$(version)'
                      }
                  }
                  }
