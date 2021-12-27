@@ -60,9 +60,9 @@ agent any
           
      }
                  stage("Deployment_to_DEV"){
-                     
+                     script{ 
                      app.run("-p 3344:3344,-d")
-                     
+                     }
                  }
         }
           
