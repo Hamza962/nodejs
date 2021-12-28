@@ -11,7 +11,7 @@ pipeline {
         githubPush()
    pollSCM('') // Enabling being build on Push
   }
-    
+    //test
 	stages {
   /*     stage('Build') {
             steps {
