@@ -2,7 +2,7 @@ pipeline {
 	options {
     buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '15',daysToKeepStr:'30',artifactDaysToKeepStr:'30'))
   }	
-agent any
+agent none
     environment{
     registry = "docker-registry.contegris.com"    
     }    
@@ -12,14 +12,14 @@ agent any
    pollSCM('') // Enabling being build on Push
   }
     
-    stages {
-      // stage('Build') {
-        //    steps {
-          //      echo 'Running build automation'
-            //    sh './gradlew build --no-daemon'
-              // archiveArtifacts artifacts: 'dist/node.zip'
-           //}
-        //}
+	stages {
+       stage('Build') {
+            steps {
+                echo 'Running build automation'
+                sh './gradlew build --no-daemon'
+              archiveArtifacts artifacts: 'dist/node.zip'
+           }
+        }
       stage('Intializing_Builder..'){
            agent { label  'Docker_builder'} 
              stages{
