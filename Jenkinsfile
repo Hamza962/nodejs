@@ -6,7 +6,7 @@ pipeline {
     environment{
     registry = "docker-registry.contegris.com"    
     }    
-       
+  //test     
  triggers {
         githubPush()
    pollSCM('') // Enabling being build on Push
