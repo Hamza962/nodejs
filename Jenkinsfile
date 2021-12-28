@@ -2,7 +2,7 @@ pipeline {
 	options {
     buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '15',daysToKeepStr:'30',artifactDaysToKeepStr:'30'))
   }	
-agent master
+agent any
     environment{
     registry = "docker-registry.contegris.com"    
     }    
