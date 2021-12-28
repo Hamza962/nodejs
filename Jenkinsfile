@@ -19,7 +19,7 @@ pipeline {
                 sh './gradlew build --no-daemon'
               archiveArtifacts artifacts: 'dist/node.zip'
            }
-    */    }
+      } */ 
       stage('Intializing_Builder..'){
            agent { label  'Docker_builder'} 
              stages{
