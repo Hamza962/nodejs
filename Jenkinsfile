@@ -13,13 +13,13 @@ pipeline {
   }
     
 	stages {
-       //stage('Build') {
-         //   steps {
-           //     echo 'Running build automation'
-             //   sh './gradlew build --no-daemon'
-              //archiveArtifacts artifacts: 'dist/node.zip'
-           //}
-       // }
+       stage('Build') {
+            steps {
+                echo 'Running build automation'
+                sh './gradlew build --no-daemon'
+              archiveArtifacts artifacts: 'dist/node.zip'
+           }
+        }
       stage('Intializing_Builder..'){
            agent { label  'Docker_builder'} 
              stages{
@@ -35,14 +35,14 @@ pipeline {
                 }
             }
         }
-               /*stage('Tag Docker Image'){
+            /*   stage('Tag Docker Image'){
                      steps{
                         echo 'checking tag EXISTS'
-                         script{
-                            version = readFile "${env.WORKSPACE}/example_env"
-                            env.WORKSPACE = pwd()
+                        script{
+                    //        version = readFile "${env.WORKSPACE}/example_env"
+                      //      env.WORKSPACE = pwd()
                             
-                             def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${version}"""
+                             def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${env.BUILD_NUMBER}"""
                              if(status_check == 0)
                              {
                               error('Tag Already Exists')
@@ -111,7 +111,8 @@ post {
             }
 }
 }
+
 def docker_run() {
 echo "RUNNING CONTAINER....."
-sh """ docker run -p 8081:8081 --name node -d  ${registry}/node_test:${env.BUILD_NUMBER}"""
+sh """ docker run -p 8081 --name node -d  ${registry}/node_test:${env.BUILD_NUMBER}"""
  }
