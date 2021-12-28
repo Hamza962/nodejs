@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("node_test")
+                    app = docker.build("node_dev")
             
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
                     //        version = readFile "${env.WORKSPACE}/example_env"
                       //      env.WORKSPACE = pwd()
                             
-                             def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_test:${env.BUILD_NUMBER}"""
+                             def status_check = sh returnStatus: true, script:"""docker image inspect  ${registry}/node_dev:${env.BUILD_NUMBER}"""
                              if(status_check == 0)
                              {
                               error('Tag Already Exists')
@@ -114,5 +114,5 @@ post {
 
 def docker_run() {
 echo "RUNNING CONTAINER....."
-sh """ docker run -p 8081:8081 --name node -d  ${registry}/node_test:${env.BUILD_NUMBER}"""
+sh """ docker run -p 8081:8081 --name node -d  ${registry}/node_dev:${env.BUILD_NUMBER}"""
  }
