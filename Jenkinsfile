@@ -13,13 +13,13 @@ agent master
   }
     
     stages {
-       stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-               archiveArtifacts artifacts: 'dist/node.zip'
-           }
-        }
+      // stage('Build') {
+        //    steps {
+          //      echo 'Running build automation'
+            //    sh './gradlew build --no-daemon'
+              // archiveArtifacts artifacts: 'dist/node.zip'
+           //}
+        //}
       stage('Intializing_Builder..'){
            agent { label  'Docker_builder'} 
              stages{
