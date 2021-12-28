@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-               stage('Tag Docker Image'){
+               /*stage('Tag Docker Image'){
                      steps{
                         echo 'checking tag EXISTS'
                          script{
@@ -55,7 +55,7 @@ pipeline {
                              }                         
                          }
                      }   
-                 }
+                 } */
                  
         stage('Push Docker Image') {
             when {
@@ -63,6 +63,7 @@ pipeline {
             }
             steps {
                 script {
+			app.tag()
                     env.WORKSPACE = pwd()
                     //def version = readFile "${env.WORKSPACE}/example_env"
                     docker.withRegistry('https://docker-registry.contegris.com/v2', 'Docker_Registry') {
