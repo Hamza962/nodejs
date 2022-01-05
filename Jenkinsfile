@@ -50,7 +50,7 @@ pipeline {
                          }
                      } */
 
-                stage('Push Docker Image') {
+                stage('Push Docker Image On Dev Repo') {
                     when {
                         branch 'main'
                     }
@@ -69,8 +69,8 @@ pipeline {
                     steps {
 
                         mail to: 'hamza.khalid@grp.contegris.com'/*'amna.zafar@grp.contegris.com,muhammad.hamza@grp.contegris.com'*/, from: 'devops@grp.contegris.com', cc: 'hamza.khalid@grp.contegris.com',
-                                subject: "Testing Required for Docker New Image-Tag For Project : ${env.JOB_NAME}",
-                                body: "Dear Concerned QA, \n\n Newly Pushed Image-Tag For Project: ${env.JOB_NAME} Is : ${env.BUILD_NUMBER}.\n Enter Above Provided Image-Tag In Following URL:${BUILD_URL}input \n\nBR \nTeam Devops"
+                                subject: "New Image Build Has Been Released : ${env.JOB_NAME}",
+                                body: "Dear Concerned QA, \n\nNewly Pushed Image-Tag For Project : ${env.JOB_NAME} is : ${env.BUILD_NUMBER} \n\nTeam Devops"
                     }
 
                 }
